@@ -4,6 +4,7 @@ on:
     workflows: [ "java ci with gradle" ]
     types: [ completed ]
   workflow_dispatch:
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
