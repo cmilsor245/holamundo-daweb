@@ -32,5 +32,14 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: test app
+      - name: set up jdk 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: setup gradle
+        uses: gradle/actions/setup-gradle@ec92e829475ac0c2315ea8f9eced72db85bb337a
+      - name: make gradlew executable
+        run: chmod +x ./gradlew
+      - name: build with gradle wrapper
         run: ./gradlew test
