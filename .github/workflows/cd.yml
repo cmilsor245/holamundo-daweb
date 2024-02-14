@@ -31,8 +31,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: 'us-east-1'
-      - name: create deployment group
+      - name: create application and deployment group
         run: |
+          aws deploy create-application \
+            --application-name github-actions-codedeploy-application \
+            --region us-east-1 \
+            --service-role-arn arn:aws:iam::334004496513:role/LabRole
           aws deploy create-deployment-group \
             --application-name github-actions-codedeploy-application \
             --deployment-group-name github-actions-codedeploy-application-group \
