@@ -29,9 +29,16 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: 'us-east-1'
-      - name: deploy to AWS CodeDeploy
+      - name: create application and deployment group
+        run: |
+          aws deploy create-application --application-name github-actions-codedeploy-application --region us-east-1
+          aws deploy create-deployment-group \
+            --application-name github-actions-codedeploy-application \
+            --deployment-group-name github-actions-codedeploy-application-group \
+            --region us-east-1 \
+            --ec2-tag-filters Key=Name,Value=YOUR_EC2_INSTANCE_NAME,Type=KEY_AND_VALUE # Update with your EC2 instance name
+      - name: deploy to aws codedeploy
         run: |
           aws deploy create-deployment \
             --application-name github-actions-codedeploy-application \
