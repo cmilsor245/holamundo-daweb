@@ -33,12 +33,15 @@ jobs:
           aws-region: 'us-east-1'
       - name: create application and deployment group
         run: |
-          aws deploy create-application --application-name github-actions-codedeploy-application --region us-east-1
+          aws deploy create-application \
+            --application-name github-actions-codedeploy-application \
+            --region us-east-1 \
+            --service-role-arn arn:aws:iam::334004496513:role/LabRole
           aws deploy create-deployment-group \
             --application-name github-actions-codedeploy-application \
             --deployment-group-name github-actions-codedeploy-application-group \
             --region us-east-1 \
-            --ec2-tag-filters Key=Name,Value=YOUR_EC2_INSTANCE_NAME,Type=KEY_AND_VALUE # Update with your EC2 instance name
+            --ec2-tag-filters Key=Name,Value=tomcat,Type=KEY_AND_VALUE # Update with your EC2 instance name
       - name: deploy to aws codedeploy
         run: |
           aws deploy create-deployment \
