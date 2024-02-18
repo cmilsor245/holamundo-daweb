@@ -276,12 +276,13 @@ Resources:
           # /opt/tomcat/bin/shutdown.sh
           # /opt/tomcat/bin/startup.sh
 
+          apt install gradle -y
           git clone https://github.com/cmilsor245/holamundo-daweb.git /tmp/holamundo-daweb
           chmod +x /tmp/holamundo-daweb/gradlew
           cd /tmp/holamundo-daweb
           sudo ./gradlew build
           sudo ./gradlew war
-          mv /tmp/holamundo-daweb/build/libs/holamundo-0.0.1-SNAPSHOT.war /opt/tomcat/webapps/holamundo-daweb.war
+          mv /tmp/holamundo-daweb/build/libs/holamundo-0.0.1-SNAPSHOT.war /opt/tomcat/webapps/holamundo2.war
 
           # Esta tiene que serla ultima instrucción
           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
