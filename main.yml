@@ -321,17 +321,6 @@ Resources:
           Value: tomcat
           Type: KEY_AND_VALUE
       DeploymentConfigName: CodeDeployDefault.OneAtATime
-  CodeDeployDeployment:
-    Type: AWS::CodeDeploy::Deployment
-    Properties:
-      ApplicationName: !Ref CodeDeployApplication
-      DeploymentGroupName: !Ref CodeDeployDeploymentGroup
-      Revision:
-        RevisionType: GitHub
-        GitHubLocation:
-          Repository: cmilsor245/holamundo-daweb
-          CommitId: 8966b4bda657c2a5f401fcd365607153ecefce4b
-        DeploymentConfigName: CodeDeployDefault.OneAtATime
 Outputs:
   InstanceEndpoint:
     Description: DNS público de la instancia EC2
