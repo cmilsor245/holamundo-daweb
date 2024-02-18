@@ -37,5 +37,4 @@ jobs:
         with:
           name: 'holamundo'
           template: './main.yml'
-          no-fail-on-empty-changeset: true
-          # 
+          no-fail-on-empty-changeset: "1"
