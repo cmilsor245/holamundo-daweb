@@ -12,7 +12,8 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - name: download repo
+        uses: actions/checkout@v4
       - name: set up jdk 17
         uses: actions/setup-java@v4
         with:
@@ -31,11 +32,3 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: 'us-east-1'
-      - name: deploy to AWS CodeDeploy
-        run: |
-          aws deploy create-deployment \
-            --application-name github-actions-codedeploy-application \
-            --deployment-group-name github-actions-codedeploy-application-group \
-            --s3-location bucket=your-bucket-name,key=your-key,bundleType=zip \
-            --region us-east-1 \
-            --description "deployment from github actions"
