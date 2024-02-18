@@ -35,7 +35,6 @@ jobs:
       - name: deploy to aws cloudformation
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
-          name: 'holamundo'
+          name: 'holamundo-github--actions-test'
           template: './main.yml'
           no-fail-on-empty-changeset: "1"
-          # 
