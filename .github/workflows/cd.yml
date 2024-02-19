@@ -32,9 +32,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: 'us-east-1'
-      - name: deploy to aws cloudformation
-        uses: aws-actions/aws-cloudformation-github-deploy@v1
-        with:
-          name: 'holamundo-github--actions-test'
-          template: './main.yml'
-          no-fail-on-empty-changeset: "1"
+      # - name: deploy to aws cloudformation
+      #   uses: aws-actions/aws-cloudformation-github-deploy@v1
+      #   with:
+      #     name: 'holamundo-github--actions-test'
+      #     template: './main.yml'
+      #     no-fail-on-empty-changeset: "1"
+      - name: last commit sha value
+        run: echo "SHA=${{ github.sha }}" >> $GITHUB_ENV
